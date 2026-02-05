@@ -7,12 +7,13 @@ import os
 # Initialize FastMCP
 
 mcp = FastMCP("Expense Tracker")
-mcp.add_middleware(
+fastapi_app = mcp.get_fastapi_app()
+fastapi_app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins (use specific URLs for production)
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 DB_PATH = os.path.join(os.path.dirname(__file__), "expenses.db")
 
