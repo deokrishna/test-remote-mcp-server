@@ -1,12 +1,19 @@
 import sqlite3
 from datetime import datetime
 from fastmcp import FastMCP
+from fastapi.middleware.cors import CORSMiddleware
 import os
 
 # Initialize FastMCP
 
 mcp = FastMCP("Expense Tracker")
-
+mcp.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins (use specific URLs for production)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 DB_PATH = os.path.join(os.path.dirname(__file__), "expenses.db")
 
 
